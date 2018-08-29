@@ -120,15 +120,7 @@ public class ResideMenu extends FrameLayout {
 //        parent.removeView(scrollViewLeftMenu);
 //        parent.removeView(scrollViewRightMenu);
     }
-    
-    	    /**
-     * Set the touch Bezel;
-     *Add&Edit by Lachguer9
-     * @param touchBezel
-     */
-    public void setMTouchBezel(int touchBezel) {
-        mTouchBezel = touchBezel;
-    }
+
 	
     /**
      * Set the background image of menu drawable;
