@@ -65,7 +65,10 @@ public class ResideMenu extends FrameLayout {
     // Valid scale factor is between 0.0f and 1.0f.
     private float mScaleValue = 0.5f;
     private int mDuration = DURATION_DEFAULT;
-
+    // Space to detect the swipe Add&Edit by Lachguer9
+    private int mTouchBezel = 100;
+    
+    
     public ResideMenu(Context context) {
         super(context);
         initViews(context);
@@ -120,10 +123,28 @@ public class ResideMenu extends FrameLayout {
 //        parent.removeView(scrollViewLeftMenu);
 //        parent.removeView(scrollViewRightMenu);
     }
+    
+    	    /**
+     * Set the touch Bezel;
+     *Add&Edit by Lachguer9
+     * @param touchBezel
+     */
+    public void setMTouchBezel(int touchBezel) {
+        mTouchBezel = touchBezel;
+    }
+	
+    /**
+     * Set the background image of menu drawable;
+     * Add&Edit by Lachguer9
+     * @param imageDrawable
+     */
+    public void setBackground(Drawable imageDrawable) {
+        imageViewBackground.setImageDrawable(imageDrawable);
+    }
 
     /**
      * Set the background image of menu;
-     *
+     *Add&Edit by Lachguer9
      * @param imageResource
      */
     public void setBackground(int imageResource) {
@@ -528,6 +549,12 @@ public class ResideMenu extends FrameLayout {
                 if (isInIgnoredView || isInDisableDirection(scaleDirection))
                     break;
 
+                if (!isOpened() && scaleDirection == DIRECTION_LEFT && !(lastActionDownX <= mTouchBezel)  )
+                    break;
+						
+				if (!isOpened() && scaleDirection == DIRECTION_RIGHT && !(lastActionDownX >= (getWidth() - mTouchBezel)))
+                    break;
+                
                 if (pressedState != PRESSED_DOWN &&
                         pressedState != PRESSED_MOVE_HORIZONTAL)
                     break;
