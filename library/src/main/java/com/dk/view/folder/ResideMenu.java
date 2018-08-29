@@ -65,10 +65,7 @@ public class ResideMenu extends FrameLayout {
     // Valid scale factor is between 0.0f and 1.0f.
     private float mScaleValue = 0.5f;
     private int mDuration = DURATION_DEFAULT;
-    // Space to detect the swipe Add&Edit by Lachguer9
-    private int mTouchBezel = 100;
-    
-    
+      
     public ResideMenu(Context context) {
         super(context);
         initViews(context);
@@ -547,12 +544,6 @@ public class ResideMenu extends FrameLayout {
 
             case MotionEvent.ACTION_MOVE:
                 if (isInIgnoredView || isInDisableDirection(scaleDirection))
-                    break;
-
-                if (!isOpened() && scaleDirection == DIRECTION_LEFT && !(lastActionDownX <= mTouchBezel)  )
-                    break;
-						
-				if (!isOpened() && scaleDirection == DIRECTION_RIGHT && !(lastActionDownX >= (getWidth() - mTouchBezel)))
                     break;
                 
                 if (pressedState != PRESSED_DOWN &&
